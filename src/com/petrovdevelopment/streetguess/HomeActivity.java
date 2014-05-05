@@ -3,15 +3,15 @@ package com.petrovdevelopment.streetguess;
 import java.util.ArrayList;
 import java.util.List;
 
+import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.petrovdevelopment.streetguess.adapters.MainMenuAdapter;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends RoboActivity {
 
 	@InjectView(R.id.mainMenu) ListView mMainMenu;
 
@@ -19,7 +19,7 @@ public class HomeActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
+		initMainMenu();
 	}
 
 	public void initMainMenu() {
@@ -32,6 +32,7 @@ public class HomeActivity extends FragmentActivity {
 		menuOptions.add("Guess");
 		menuOptions.add("Marathon");
 		menuOptions.add("Competition");
+		menuOptions.add("yay");
 		return menuOptions;
 	}
 

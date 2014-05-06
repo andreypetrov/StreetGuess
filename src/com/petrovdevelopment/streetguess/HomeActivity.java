@@ -1,15 +1,19 @@
 package com.petrovdevelopment.streetguess;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.petrovdevelopment.streetguess.adapters.MainMenuAdapter;
+import com.petrovdevelopment.streetguess.util.U;
 
 public class HomeActivity extends RoboActivity {
 
@@ -17,6 +21,7 @@ public class HomeActivity extends RoboActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// getActionBar().hide();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		initMainMenu();
@@ -28,15 +33,34 @@ public class HomeActivity extends RoboActivity {
 	}
 
 	private List<String> getMenuOptions() {
-		List<String> menuOptions = new ArrayList<String>();
-		menuOptions.add("Guess");
-		menuOptions.add("Marathon");
-		menuOptions.add("Competition");
-		menuOptions.add("yay");
-		return menuOptions;
+		return Arrays.asList(getResources().getStringArray(R.array.main_menu));
 	}
 
 	private ListAdapter getMainMenuAdapter(List<String> menuOptions) {
 		return new MainMenuAdapter(menuOptions, this);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.home_action_bar, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle presses on the action bar items
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			openSettings();
+			return true;
+		default:
+			return super.onOptionsItemSelected(item); //ensures fragments can also handle the call
+		}
+	}
+
+	private void openSettings() {
+		// TODO Auto-generated method stub
+		U.log(this, "OpenSettings");
 	}
 }

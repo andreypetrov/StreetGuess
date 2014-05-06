@@ -205,36 +205,47 @@ public final class R {
         public static final int tripAdvisorRating=0x7f0500ad;
         public static final int twitter_blue=0x7f0500b3;
     }
+    public static final class dimen {
+        /**  Default screen margins, per the Android Design guidelines. 
+         */
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
+        public static final int text_size_large=0x7f060004;
+        public static final int text_size_medium=0x7f060003;
+        public static final int text_size_small=0x7f060002;
+        public static final int text_size_xlarge=0x7f060005;
+    }
     public static final class drawable {
         public static final int action_bar_background=0x7f020000;
         public static final int ic_launcher=0x7f020001;
         public static final int settings=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090003;
-        public static final int action_test=0x7f090004;
-        public static final int mainMenu=0x7f090001;
-        public static final int text=0x7f090002;
-        public static final int title=0x7f090000;
+        public static final int action_settings=0x7f0a0003;
+        public static final int action_test=0x7f0a0004;
+        public static final int mainMenu=0x7f0a0001;
+        public static final int text=0x7f0a0002;
+        public static final int title=0x7f0a0000;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
         public static final int cell_main_menu=0x7f030001;
     }
     public static final class menu {
-        public static final int home_action_bar=0x7f080000;
+        public static final int home_action_bar=0x7f090000;
     }
     public static final class string {
-        public static final int app_name=0x7f060001;
-        public static final int google_map_debug_key=0x7f060000;
+        public static final int app_name=0x7f070001;
+        public static final int google_map_debug_key=0x7f070000;
         /**  Action bar menu 
          */
-        public static final int settings=0x7f060002;
+        public static final int settings=0x7f070002;
         /**  Settings 
          */
-        public static final int sound=0x7f060003;
+        public static final int sound=0x7f070003;
     }
     public static final class style {
+        public static final int ActionBarTitleText=0x7f080003;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -256,12 +267,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
+ removes action bar border and shadow 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
         /**  ActionBar styles 
          */
-        public static final int StreetGuessActionBar=0x7f070002;
+        public static final int StreetGuessActionBar=0x7f080002;
     }
 }

@@ -5,10 +5,14 @@ import java.util.List;
 
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -30,6 +34,28 @@ public class HomeActivity extends RoboActivity {
 	public void initMainMenu() {
 		List<String> menuOptions = getMenuOptions();
 		mMainMenu.setAdapter(getMainMenuAdapter(menuOptions));
+		mMainMenu.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+				switch (position) {
+				case 0:
+					openGuessActivity();
+					break;
+				case 1:
+					U.log(this, "second button");
+					break;
+				case 2:
+					U.log(this, "third button");
+					break;
+				default: // do nothing
+				}
+			}
+		});
+	}
+
+	protected void openGuessActivity() {
+		Intent intent = new Intent(this, GuessActivity.class);
+		startActivity(intent);
 	}
 
 	private List<String> getMenuOptions() {
@@ -55,7 +81,7 @@ public class HomeActivity extends RoboActivity {
 			openSettings();
 			return true;
 		default:
-			return super.onOptionsItemSelected(item); //ensures fragments can also handle the call
+			return super.onOptionsItemSelected(item); // ensures fragments can also handle the call
 		}
 	}
 

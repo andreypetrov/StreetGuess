@@ -2,10 +2,18 @@
 
     <string name="app_name">Street Guess</string>
 
-	<!-- Action bar menu -->
+    <!-- Action bar menu -->
     <string name="settings">Settings</string>
-  	
+
     <!-- Settings -->
     <string name="sound">Sound</string>
     <!--  -->
+
+
+    <!-- Guess view -->
+    <string name="make_guess">Make Guess</string>
+    <string name="last_guess">Last guess</string>
+    <string name="total">Total</string>
+    <string name="points">points</string>
+
 </resources>

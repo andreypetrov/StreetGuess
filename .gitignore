@@ -1,0 +1,7 @@
+res/values/google_map.xml
+bin/*
+gen/*
+*.orig
+libs/parallax/bin
+*.sqlite
+res/values/com_crashlytics_export_strings.xml

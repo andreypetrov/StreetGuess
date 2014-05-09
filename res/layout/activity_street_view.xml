@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Yellow"
+    android:background="@color/Red"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingTop="?android:attr/actionBarSize" >
+    android:orientation="vertical" >
 
-    <include layout="@layout/fragment_guess" />
-    <!--
-          <fragment
-                android:id="@+id/guessFragment"
-                android:name="com.kineticcafe.flightnetwork.flights.fragments.GuessFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout="@layout/fragment_checkout_booking" />
-    -->
+    <ImageButton
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/street_view_image"
+        android:src="@color/Blue" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/makeGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:background="@drawable/btn_guess"
+        android:onClick="onMakeGuessClick"
+        android:text="@string/make_guess"
+        android:textColor="@color/Green" />
+
+</RelativeLayout>

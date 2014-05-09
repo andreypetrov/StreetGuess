@@ -9,7 +9,9 @@
     <string name="sound">Sound</string>
     <!--  -->
 
-
+	<!-- Street View  -->
+	<string name="street_view_image">Street View Image</string>
+	
     <!-- Guess view -->
     <string name="make_guess">Make Guess</string>
     <string name="last_guess">Last guess</string>

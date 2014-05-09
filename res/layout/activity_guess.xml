@@ -8,13 +8,5 @@
     android:paddingTop="?android:attr/actionBarSize" >
 
     <include layout="@layout/fragment_guess" />
-    <!--
-          <fragment
-                android:id="@+id/guessFragment"
-                android:name="com.kineticcafe.flightnetwork.flights.fragments.GuessFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout="@layout/fragment_checkout_booking" />
-    -->
 
 </LinearLayout>

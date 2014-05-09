@@ -38,6 +38,10 @@
             android:name="com.petrovdevelopment.streetguess.GuessActivity"
             android:screenOrientation="sensorPortrait" >
         </activity>
+        <activity
+            android:name="com.petrovdevelopment.streetguess.StreetViewActivity"
+            android:screenOrientation="sensorPortrait" >
+        </activity>
     </application>
 
 </manifest>

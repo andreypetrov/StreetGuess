@@ -406,16 +406,17 @@ containing a value of this type.
         public static final int settings=0x7f020020;
     }
     public static final class id {
-        public static final int action_settings=0x7f050009;
+        public static final int action_settings=0x7f05000a;
         public static final int hybrid=0x7f050004;
+        public static final int image=0x7f050006;
         public static final int mainMenu=0x7f050005;
-        public static final int makeGuess=0x7f050008;
-        public static final int map=0x7f050007;
+        public static final int makeGuess=0x7f050007;
+        public static final int map=0x7f050009;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int satellite=0x7f050002;
         public static final int terrain=0x7f050003;
-        public static final int text=0x7f050006;
+        public static final int text=0x7f050008;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -529,19 +530,22 @@ containing a value of this type.
          */
         public static final int common_signin_button_text_long=0x7f060013;
         public static final int google_map_debug_key=0x7f06001a;
-        public static final int last_guess=0x7f06001f;
-        /**   
- Guess view 
+        public static final int last_guess=0x7f060020;
+        /**  Guess view 
          */
-        public static final int make_guess=0x7f06001e;
-        public static final int points=0x7f060021;
+        public static final int make_guess=0x7f06001f;
+        public static final int points=0x7f060022;
         /**  Action bar menu 
          */
         public static final int settings=0x7f06001c;
         /**  Settings 
          */
         public static final int sound=0x7f06001d;
-        public static final int total=0x7f060020;
+        /**   
+ Street View  
+         */
+        public static final int street_view_image=0x7f06001e;
+        public static final int total=0x7f060021;
     }
     public static final class style {
         public static final int ActionBarTitleText=0x7f0a0003;

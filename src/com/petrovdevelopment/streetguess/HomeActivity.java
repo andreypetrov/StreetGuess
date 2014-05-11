@@ -54,7 +54,7 @@ public class HomeActivity extends RoboActivity {
 	}
 
 	protected void openGuessActivity() {
-		Intent intent = new Intent(this, GuessActivity.class);
+		Intent intent = new Intent(this, StreetViewActivity.class);
 		startActivity(intent);
 	}
 

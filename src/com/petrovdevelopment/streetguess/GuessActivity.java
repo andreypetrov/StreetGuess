@@ -35,9 +35,10 @@ public class GuessActivity extends RoboFragmentActivity {
 	}
 
 	public void initMap() {
-		mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-		mMap = mMapFragment.getMap();
-		addMarker(mMap, mLocation);
+		//FIXME add a listener when the map is available
+		// mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+		// mMap = mMapFragment.getMap();
+		// addMarker(mMap, mLocation);
 	}
 
 	public static void addMarker(GoogleMap map, Location location) {

@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:background="@color/Yellow"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingTop="?android:attr/actionBarSize" >
+    android:orientation="vertical" >
+
+    <!-- android:paddingTop="?android:attr/actionBarSize" -->
 
     <ListView
         android:id="@+id/mainMenu"

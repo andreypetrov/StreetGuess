@@ -548,7 +548,6 @@ containing a value of this type.
         public static final int total=0x7f060021;
     }
     public static final class style {
-        public static final int ActionBarTitleText=0x7f0a0003;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -572,12 +571,9 @@ containing a value of this type.
          */
         public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
- removes action bar border and shadow 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0a0001;
-        /**  ActionBar styles 
-         */
-        public static final int StreetGuessActionBar=0x7f0a0002;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.

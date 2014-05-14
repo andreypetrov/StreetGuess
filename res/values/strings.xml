@@ -19,5 +19,8 @@
     <string name="total">Total</string>
     <string name="points">points</string>
     <string name="map_cannot_load">We are sorry, Google Maps cannot load!</string>
-	<string name="guess">Guess</string>
+    <string name="guess">Guess</string>
+    <string name="location">Location</string>
+    <string name="the_spot">The Spot</string>
+
 </resources>

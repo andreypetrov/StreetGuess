@@ -6,6 +6,7 @@
     <item android:drawable="@color/BlueButton" android:state_selected="true"/>
     <item android:drawable="@color/BlueButton" android:state_focused="true"/>
     <item android:drawable="@color/BlueButton" android:state_hovered="true"/>
-    <item android:drawable="@drawable/menu_button"/>
+    <item android:drawable="@drawable/menu_button" android:state_enabled="true"/>
+    <item android:drawable="@color/Gray"/>
 
 </selector>

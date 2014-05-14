@@ -6,8 +6,10 @@ import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.petrovdevelopment.streetguess.model.Location;
@@ -22,6 +24,8 @@ import com.petrovdevelopment.streetguess.util.U;
 public class GuessActivity extends RoboFragmentActivity {
 	private Location mLocation;
 	private GoogleMap mMap;
+	private Marker mCurrentMarker;
+
 	private SupportMapFragment mMapFragment;
 	private static final int MAP_ZOOM = 13;
 
@@ -31,14 +35,40 @@ public class GuessActivity extends RoboFragmentActivity {
 		mLocation = new Gson().fromJson(locationJson, Location.class);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_guess);
-		initMap();
+		initMapIfPresent();
+	}
+
+	public void initMapIfPresent() {
+		mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+		if (mMapFragment != null) {
+			mMap = mMapFragment.getMap();
+			if (mMap != null) {
+				initMap();
+				addMarker(mMap, mLocation);
+			} else showErrorMessage(R.string.map_cannot_load);
+		} else showErrorMessage(R.string.map_cannot_load);
+
 	}
 
 	public void initMap() {
-		//FIXME add a listener when the map is available
-		// mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-		// mMap = mMapFragment.getMap();
-		// addMarker(mMap, mLocation);
+		mMap.setOnMapClickListener(new OnMapClickListener() {
+
+			/**
+			 * Remove the old marker and add a new one
+			 */
+			@Override
+			public void onMapClick(LatLng point) {
+				mCurrentMarker.remove();
+				mCurrentMarker = mMap.addMarker(new MarkerOptions().title(getString(R.string.guess)).position(point));
+			}
+		});
+	}
+
+	/**
+	 * Show an error message, because the map could not be loaded
+	 */
+	private void showErrorMessage(int stringResourceId) {
+		U.log(this, getString(stringResourceId));
 	}
 
 	public static void addMarker(GoogleMap map, Location location) {

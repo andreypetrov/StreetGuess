@@ -31,15 +31,15 @@ public class FontTextView extends TextView {
 		mAssetFontLocation = viewAttrsUtil.getStringFromXml(R.styleable.FontTextView_font);
 		U.log(this, "font location: " + mAssetFontLocation);
 		if (mAssetFontLocation != null && !mAssetFontLocation.equals("")) {
-			setTypeface(Typeface.createFromAsset(context.getAssets(), mAssetFontLocation));
+			if (!isInEditMode()) {
+				setTypeface(Typeface.createFromAsset(context.getAssets(), mAssetFontLocation));
+			}
 		}
 		initialize(context);
 	}
 
 	private void initialize(Context context) {
-		if (!isInEditMode()) {
 
-		}
 	}
 
 }

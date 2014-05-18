@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Red"
+    android:background="@color/yellow_light"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/street_view_image"
-        android:src="@color/Blue" />
+        android:src="@color/teal" />
 
     <Button
         android:id="@+id/makeGuess"
@@ -23,6 +23,6 @@
         android:background="@drawable/btn_guess"
         android:onClick="onMakeGuessClick"
         android:text="@string/make_guess"
-        android:textColor="@color/Green" />
+        android:textColor="@color/teal" />
 
 </RelativeLayout>

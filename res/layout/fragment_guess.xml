@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Red"
+    android:background="@color/red"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -25,6 +25,6 @@
         android:onClick="onMakeGuessClick"
         android:padding="10dp"
         android:text="@string/make_guess"
-        android:textColor="@color/Green" />
+        android:textColor="@color/teal" />
 
 </RelativeLayout>

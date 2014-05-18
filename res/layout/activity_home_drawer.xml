@@ -10,15 +10,12 @@
     <include layout="@layout/activity_home" />
 
     <FrameLayout
-        android:id="@+id/leftDrawer"
+        android:id="@+id/rightDrawer"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="left" >
+        android:layout_gravity="right" >
 
-        <FrameLayout
-            android:id="@+id/left_drawer_fragment"
-            android:layout_width="400dp"
-            android:layout_height="match_parent" />
+        <include layout="@layout/home_right_drawer" />
     </FrameLayout>
 
 </android.support.v4.widget.DrawerLayout>

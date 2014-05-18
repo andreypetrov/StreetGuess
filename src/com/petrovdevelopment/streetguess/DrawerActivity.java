@@ -25,38 +25,37 @@ public class DrawerActivity extends RoboActivity implements DrawerListener {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		if (mDrawerLayout != null) {
 			mDrawerLayout.setDrawerListener(this);
-			leftDrawer = (FrameLayout) findViewById(R.id.leftDrawer);
-			// rightDrawer = (FrameLayout) findViewById(R.id.rightDrawer);
+			// leftDrawer = (FrameLayout) findViewById(R.id.leftDrawer);
+			rightDrawer = (FrameLayout) findViewById(R.id.rightDrawer);
 		} // else there is no drawer
 
 	}
 
 	/**
-	 * Open the left drawer. If the drawer does not exist, instead open the alternative activity
+	 * Open the left drawer. This method can be assigned directly in xml as onClick action
 	 */
-	public void openLeftDrawer() {
+	public void openLeftDrawer(View v) {
 		if (mDrawerLayout != null && getLeftDrawer() != null) mDrawerLayout.openDrawer(getLeftDrawer());
 	}
 
 	/**
-	 * Open the right drawer. If the drawer does not exist, instead open the alternative activity
+	 * Open the right drawer. This method can be assigned directly in xml as onClick action
 	 * 
 	 * @param class1
 	 */
-	public void openRightDrawer(Class<? extends Activity> activityClass) {
-		U.log(this, "first drawer");
-		if (mDrawerLayout != null && getRightDrawer() != null) {
-			mDrawerLayout.openDrawer(getRightDrawer());
-		} else { // we use a phone
-			Intent intent = new Intent(this, activityClass);
-			startActivity(intent);
-		}
+	public void openRightDrawer(View v) {
+		if (mDrawerLayout != null && getRightDrawer() != null) mDrawerLayout.openDrawer(getRightDrawer());
 	}
 
+	/**
+	 * Close the currently open drawer. At any time there can be only one open drawer
+	 * 
+	 * @param v
+	 */
 	public void closeDrawers(View v) {
 		if (mDrawerLayout != null) {
 			if (mDrawerLayout.isDrawerOpen(getRightDrawer())) mDrawerLayout.closeDrawer(getRightDrawer());
-			else if (mDrawerLayout.isDrawerOpen(getLeftDrawer())) mDrawerLayout.closeDrawer(getLeftDrawer());
+			if (mDrawerLayout.isDrawerOpen(getLeftDrawer())) mDrawerLayout.closeDrawer(getLeftDrawer());
 		}
 	}
 
@@ -78,9 +77,8 @@ public class DrawerActivity extends RoboActivity implements DrawerListener {
 
 	@Override
 	public void onBackPressed() {
-		if (isDrawerOpen) {
-			closeDrawers(null);
-		} else super.onBackPressed();
+		if (isDrawerOpen) closeDrawers(null);
+		else super.onBackPressed();
 	}
 
 	public FrameLayout getLeftDrawer() {

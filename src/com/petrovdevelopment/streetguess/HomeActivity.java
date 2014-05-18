@@ -19,15 +19,17 @@ import android.widget.ListView;
 import com.petrovdevelopment.streetguess.adapters.MainMenuAdapter;
 import com.petrovdevelopment.streetguess.util.U;
 
-public class HomeActivity extends RoboActivity {
+public class HomeActivity extends DrawerActivity {
 
-	@InjectView(R.id.mainMenu) ListView mMainMenu;
+	@InjectView(R.id.mainMenu)
+	ListView mMainMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// getActionBar().hide();
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
+		setContentView(R.layout.activity_home_drawer);
+		initDrawersHandlers();
 		initMainMenu();
 	}
 

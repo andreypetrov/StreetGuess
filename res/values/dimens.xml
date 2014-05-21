@@ -9,7 +9,8 @@
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="text_size_xlarge">27sp</dimen>
     <dimen name="button_space">10dp</dimen>
-
-    
+    <dimen name="progress_bar_step_width">30dp</dimen>
+    <dimen name="progress_bar_step_height">5dp</dimen>
+    <dimen name="progress_bar_step_gap">5dp</dimen>
 
 </resources>

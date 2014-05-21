@@ -5,6 +5,9 @@
     <attr name="max" format="integer" />
     <attr name="step_layout" format="reference" />
     <attr name="value" format="integer" />
+    <attr name="step_gap" format="dimension" />
+    <attr name="step_width" format="dimension" />
+    <attr name="step_height" format="dimension" />
 
     <declare-styleable name="FontTextView">
         <attr name="font" />
@@ -13,6 +16,9 @@
         <attr name="max" />
         <attr name="value" />
         <attr name="step_layout" />
+        <attr name="step_gap" />
+        <attr name="step_width" />
+        <attr name="step_height" />
     </declare-styleable>
 
 </resources>

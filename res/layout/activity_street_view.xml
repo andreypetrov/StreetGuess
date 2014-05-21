@@ -28,13 +28,20 @@
 
     <com.petrovdevelopment.streetguess.views.GameProgressBar
         android:id="@+id/progress"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/yellow_rounded_rectangle"
+        android:gravity="left|center_vertical"
         android:orientation="horizontal"
+        android:padding="2dp"
         custom:max="7"
+        custom:step_gap="@dimen/progress_bar_step_gap"
+        custom:step_height="@dimen/progress_bar_step_height"
         custom:step_layout="@layout/progress_bar_step"
+        custom:step_width="@dimen/progress_bar_step_width"
         custom:value="3" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.petrovdevelopment.streetguess.views;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.util.AttributeSet;
@@ -15,6 +16,8 @@ public class GameProgressBar extends LinearLayout {
 	public static final int DEFAULT_STEP_GAP_IN_PIXELS = 30;
 	public static final int DEFAULT_STEP_WIDTH_IN_PIXELS = 30;
 	public static final int DEFAULT_STEP_HEIGHT_IN_PIXELS = 30;
+	public static final int ANIMATION_TIME_IN_MILLIS = 3000;
+
 	int max;
 	int value; // 0 based
 	int stepLayoutId;
@@ -50,14 +53,21 @@ public class GameProgressBar extends LinearLayout {
 		if (getValue() >= getMax()) throw new IllegalStateException("Cannot increment progress above or equal to the bar size which is " + max);
 		U.log(this, "increment");
 		// TODO add animation here to slowly increaze the size of the view from 0 to max
-		addView(createStepView());
+		addViewAnimated();
 		value++;
+	}
+
+	public void addViewAnimated() {
+		View v = createStepView();
+		addView(createStepView());
+		ObjectAnimator.ofFloat(v, "scaleX", 0f, 1f).setDuration(ANIMATION_TIME_IN_MILLIS).start();
 	}
 
 	public void decrementProgress() {
 		if (getValue() == 0) throw new IllegalStateException("Cannot decrement progress below 0");
 		value--;
 		removeViewAt(value);
+
 	}
 
 	/**

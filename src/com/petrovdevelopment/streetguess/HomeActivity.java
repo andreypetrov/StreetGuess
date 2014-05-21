@@ -3,7 +3,6 @@ package com.petrovdevelopment.streetguess;
 import java.util.Arrays;
 import java.util.List;
 
-import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +20,7 @@ import com.petrovdevelopment.streetguess.util.U;
 
 public class HomeActivity extends DrawerActivity {
 
-	@InjectView(R.id.mainMenu)
-	ListView mMainMenu;
+	@InjectView(R.id.mainMenu) ListView mMainMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +71,7 @@ public class HomeActivity extends DrawerActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.home_action_bar, menu);
 		return super.onCreateOptionsMenu(menu);
+
 	}
 
 	@Override

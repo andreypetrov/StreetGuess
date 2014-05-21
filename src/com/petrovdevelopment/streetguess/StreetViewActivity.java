@@ -12,7 +12,7 @@ public class StreetViewActivity extends RoboActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		mRound = createRound(); //TODO replace this with getting the round from the game model
+		mRound = createRound(); // TODO replace this with getting the round from the game model
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_street_view);
 	}

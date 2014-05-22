@@ -1,9 +1,13 @@
 package com.petrovdevelopment.streetguess.views;
 
-import android.animation.ObjectAnimator;
+import android.animation.Animator;
+import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorSet;
+import android.animation.AnimatorSet.Builder;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable.Orientation;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -24,6 +28,10 @@ public class GameProgressBar extends LinearLayout {
 	int stepGap;
 	int stepWidth;
 	int stepHeight;
+
+	int incrementDelta; // used for updating the animation when incrementing. A state kept by the listeners
+	private AnimatorSet animatorSet;
+	private Builder animatorSetBuilder;
 
 	public GameProgressBar(Context context) {
 		super(context);
@@ -49,25 +57,38 @@ public class GameProgressBar extends LinearLayout {
 
 	}
 
-	public void incrementProgress() {
+	/**
+	 * Add one to current progress value
+	 * 
+	 * @param isAnimated
+	 *            whether we want the new step to show animating or immediately
+	 */
+	public void incrementProgress(boolean isAnimated) {
 		if (getValue() >= getMax()) throw new IllegalStateException("Cannot increment progress above or equal to the bar size which is " + max);
-		U.log(this, "increment");
-		// TODO add animation here to slowly increaze the size of the view from 0 to max
-		addViewAnimated();
+
+		if (isAnimated) {
+			View v = createStepView(0);
+			addView(v);
+			animateStepWidth(v);
+		} else addView(createStepView(stepWidth));
+
 		value++;
 	}
 
 	public void addViewAnimated() {
-		View v = createStepView();
-		addView(createStepView());
-		ObjectAnimator.ofFloat(v, "scaleX", 0f, 1f).setDuration(ANIMATION_TIME_IN_MILLIS).start();
+		final View v = createStepView(0);
+		addView(v);
+		animateStepWidth(v);
 	}
 
+	/**
+	 * Remove one from current progress value
+	 * 
+	 */
 	public void decrementProgress() {
 		if (getValue() == 0) throw new IllegalStateException("Cannot decrement progress below 0");
 		value--;
 		removeViewAt(value);
-
 	}
 
 	/**
@@ -80,13 +101,28 @@ public class GameProgressBar extends LinearLayout {
 		if (progress >= getMax()) throw new IllegalStateException("Cannot set a progress above or equal to the bar size, which is " + max);
 		if (progress < 0) throw new IllegalStateException("Cannot set a progress below 0");
 		if (progress > getValue()) {
-			for (int i = getValue(); i < progress; i++)
-				incrementProgress();
+			for (int i = getValue(); i < progress; i++) {
+				incrementProgress(false); // TODO chain animations if need be http://stackoverflow.com/questions/10092124/android-chain-animations
+			}
 		} else {
 			for (int i = getValue(); i > progress; i--)
 				decrementProgress();
 		}
 
+	}
+
+	private void animateStepWidth(final View stepView) {
+		ValueAnimator anim = ValueAnimator.ofInt(0, stepWidth).setDuration(ANIMATION_TIME_IN_MILLIS);
+		anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+			@Override
+			public void onAnimationUpdate(ValueAnimator animator) {
+				int val = (Integer) animator.getAnimatedValue();
+				LinearLayout.LayoutParams layoutParams = (LayoutParams) stepView.getLayoutParams();
+				layoutParams.width = val;
+				stepView.setLayoutParams(layoutParams);
+			}
+		});
+		anim.start();
 	}
 
 	public boolean hasCompleted() {
@@ -101,10 +137,18 @@ public class GameProgressBar extends LinearLayout {
 		return max;
 	}
 
-	private View createStepView() {
+	/**
+	 * Create a new increment step view to add ot the layout
+	 * 
+	 * @return
+	 */
+	private View createStepView(int width) {
 		View v = inflate(getContext(), stepLayoutId, null);
-		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(stepWidth, stepHeight);
-		if (getChildCount() > 0) {// if this is not the first view, then add margin
+
+		LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(width, stepHeight);
+		layoutParams.gravity = Gravity.LEFT;
+
+		if (getChildCount() > 0) {// if this is not the first view, then add margin (gap between increment steps)
 			if (getOrientation() == HORIZONTAL) layoutParams.setMargins(stepGap, 0, 0, 0);
 			else layoutParams.setMargins(0, stepGap, 0, 0);
 		}

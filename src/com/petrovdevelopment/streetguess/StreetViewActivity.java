@@ -3,19 +3,21 @@ package com.petrovdevelopment.streetguess;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.petrovdevelopment.streetguess.model.Round;
-import com.petrovdevelopment.streetguess.util.U;
 import com.petrovdevelopment.streetguess.views.GameProgressBar;
+import com.squareup.picasso.Picasso;
 
 public class StreetViewActivity extends RoboActivity {
+	public static final int ANIMATION_TIME_IN_MILLIS = 3000;
 	private Round mRound;
 
 	@InjectView(R.id.progress) GameProgressBar mProgressBar;
+	@InjectView(R.id.image) ImageView mImageView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,9 @@ public class StreetViewActivity extends RoboActivity {
 	}
 
 	private void updateUi(Round mRound2) {
-		mProgressBar.incrementProgress();
-		// ObjectAnimator.ofFloat(mProgressBar, "scaleX", 0f, 1f).setDuration(3000).start();
+		mProgressBar.incrementProgress(true);
+		Picasso.with(this).setDebugging(true);
+		Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").into(mImageView);
 	}
 
 	public Round createRound() {

@@ -1,5 +1,7 @@
 package com.petrovdevelopment.streetguess.model;
 
+import java.util.Random;
+
 import android.content.Context;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -8,6 +10,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.petrovdevelopment.streetguess.R;
+import com.petrovdevelopment.streetguess.util.MathUtil;
+import com.petrovdevelopment.streetguess.util.U;
 
 /**
  * A model representing a location, with immutable properties.
@@ -40,10 +44,16 @@ public class Location {
 	public Location() {
 		imageUrl = "http://1.bp.blogspot.com/-C9sdBW15K8s/T9IfvrVJ_pI/AAAAAAAACcs/xs44YbBF1eI/s1600/ao1.png";
 		name = "test dummy name";
-		latitude = DEFAULT_LATITUDE;
-		longitude = DEFAULT_LONGITUDE;
+		// latitude = DEFAULT_LATITUDE;
+		// longitude = DEFAULT_LONGITUDE;
 		description = "";
+		latitude = MathUtil.generateRandomFloatInRange(-48, 10);
+		longitude = MathUtil.generateRandomFloatInRange(-180, 180);
 		latLng = new LatLng(latitude, longitude);
+
+		int[] counts = new int[10];// from 0 to 9
+
+		// todo check if there is a panorama for those coordinates, if not then do something else
 	}
 
 	public Location(Double latitude, Double longitude, String name, String imageUrl, String description) {
@@ -53,6 +63,7 @@ public class Location {
 		this.imageUrl = imageUrl;
 		this.description = description;
 		this.latLng = new LatLng(latitude, longitude);
+
 	}
 
 	public String getJson() {
@@ -64,4 +75,5 @@ public class Location {
 		String title = context.getResources().getString(R.string.the_spot);
 		return new MarkerOptions().title(title).position(latLng).icon(bitmapDescriptor);
 	}
+
 }

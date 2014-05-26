@@ -50,7 +50,8 @@ public class Location {
 		latitude = MathUtil.generateRandomFloatInRange(-48, 10);
 		longitude = MathUtil.generateRandomFloatInRange(-180, 180);
 		latLng = new LatLng(latitude, longitude);
-
+		U.log(this, "latitude: " + latitude);
+		U.log(this, "longitude: " + longitude);
 		int[] counts = new int[10];// from 0 to 9
 
 		// todo check if there is a panorama for those coordinates, if not then do something else

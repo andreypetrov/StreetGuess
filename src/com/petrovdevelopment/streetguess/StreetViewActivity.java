@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.gms.maps.StreetViewPanorama;
+import com.google.android.gms.maps.StreetViewPanorama.OnStreetViewPanoramaChangeListener;
 import com.google.android.gms.maps.StreetViewPanoramaFragment;
+import com.google.android.gms.maps.model.StreetViewPanoramaLocation;
 import com.petrovdevelopment.streetguess.model.Round;
+import com.petrovdevelopment.streetguess.util.U;
 import com.petrovdevelopment.streetguess.views.GameProgressBar;
 
 public class StreetViewActivity extends RoboActivity {
@@ -16,6 +19,7 @@ public class StreetViewActivity extends RoboActivity {
 	private Round mRound;
 
 	@InjectView(R.id.progress) GameProgressBar mProgressBar;
+	StreetViewPanoramaFragment mStreetViewFragment;
 
 	// @InjectView(R.id.image) ImageView mImageView;
 
@@ -24,7 +28,9 @@ public class StreetViewActivity extends RoboActivity {
 		mRound = createRound(); // TODO replace this with getting the round from the game model
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_street_view);
+		mStreetViewFragment = (StreetViewPanoramaFragment) getFragmentManager().findFragmentById(R.id.streetView);
 		updateUi(mRound);
+
 	}
 
 	private void updateUi(Round mRound2) {
@@ -45,8 +51,28 @@ public class StreetViewActivity extends RoboActivity {
 	}
 
 	public void initStreetView(Round round) {
-		StreetViewPanoramaFragment streetViewFragment = (StreetViewPanoramaFragment) getFragmentManager().findFragmentById(R.id.streetView);
-		StreetViewPanorama panorama = streetViewFragment.getStreetViewPanorama();
-		if (panorama != null) panorama.setPosition(round.correctLocation.latLng, 50000);
+		final StreetViewPanorama panorama = mStreetViewFragment.getStreetViewPanorama();
+		if (panorama != null) {
+			OnStreetViewPanoramaChangeListener listener = new OnStreetViewPanoramaChangeListener() {
+
+				@Override
+				public void onStreetViewPanoramaChange(StreetViewPanoramaLocation location) {
+					if (location != null) {
+						// do nothing
+						U.log(this, location.panoId);
+					} else {
+						U.log(this, "location is null");
+						initStreetView(new Round());
+					}
+				}
+			};
+
+			panorama.setPosition(round.correctLocation.latLng, 50000);
+			panorama.getLocation();
+			panorama.setOnStreetViewPanoramaChangeListener(listener);
+		} else {
+			U.log(this, "panorama is null");
+		}
 	}
+
 }

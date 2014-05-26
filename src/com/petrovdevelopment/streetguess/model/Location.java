@@ -23,6 +23,10 @@ public class Location {
 	// public static final String NAME_EXTRA = "name extra";
 	// public static final String IMAGE_URL_EXTRA = "image url extra";
 
+	// latitude is in [-85, 85], but for street view purposes [-48, 71];
+	// longitude is in [-180, 180]. It would be nice to slice out all the ocean areas, but let's see if it is needed
+	// non-deterministic random pic of coordinates and 1000 to 100000 meters radius around them to get a valid panorama
+
 	public static final Double DEFAULT_LATITUDE = -33.867d;
 	public static final Double DEFAULT_LONGITUDE = 151.206d;
 

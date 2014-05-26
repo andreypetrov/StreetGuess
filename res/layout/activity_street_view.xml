@@ -7,6 +7,12 @@
     android:gravity="center"
     android:orientation="vertical" >
 
+    <fragment
+        android:id="@+id/streetView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.StreetViewPanoramaFragment" />
+    <!--
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
@@ -14,6 +20,7 @@
         android:contentDescription="@string/street_view_image"
         android:scaleType="centerCrop"
         android:src="@color/teal" />
+    -->
 
     <Button
         android:id="@+id/makeGuess"

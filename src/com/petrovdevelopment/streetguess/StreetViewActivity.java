@@ -51,6 +51,7 @@ public class StreetViewActivity extends RoboActivity {
 	}
 
 	public void initStreetView(Round round) {
+		U.log(this, "init street view");
 		final StreetViewPanorama panorama = mStreetViewFragment.getStreetViewPanorama();
 		if (panorama != null) {
 			OnStreetViewPanoramaChangeListener listener = new OnStreetViewPanoramaChangeListener() {
@@ -74,5 +75,7 @@ public class StreetViewActivity extends RoboActivity {
 			U.log(this, "panorama is null");
 		}
 	}
+	
+	
 
 }

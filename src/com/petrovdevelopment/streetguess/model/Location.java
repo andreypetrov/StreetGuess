@@ -34,6 +34,9 @@ public class Location {
 	public static final Double DEFAULT_LATITUDE = -33.867d;
 	public static final Double DEFAULT_LONGITUDE = 151.206d;
 
+	public static final Double TORONTO_LAT = 43.652728;
+	public static final Double TORONTO_LONG = -79.375303;
+
 	public final Double latitude;
 	public final Double longitude;
 	public final String name;
@@ -44,11 +47,11 @@ public class Location {
 	public Location() {
 		imageUrl = "http://1.bp.blogspot.com/-C9sdBW15K8s/T9IfvrVJ_pI/AAAAAAAACcs/xs44YbBF1eI/s1600/ao1.png";
 		name = "test dummy name";
-		// latitude = DEFAULT_LATITUDE;
-		// longitude = DEFAULT_LONGITUDE;
+		latitude = DEFAULT_LATITUDE;
+		longitude = DEFAULT_LONGITUDE;
 		description = "";
-		latitude = MathUtil.generateRandomFloatInRange(-48, 10);
-		longitude = MathUtil.generateRandomFloatInRange(-180, 180);
+		// latitude = MathUtil.generateRandomFloatInRange(-48, 10);
+		// longitude = MathUtil.generateRandomFloatInRange(-180, 180);
 		latLng = new LatLng(latitude, longitude);
 		U.log(this, "latitude: " + latitude);
 		U.log(this, "longitude: " + longitude);

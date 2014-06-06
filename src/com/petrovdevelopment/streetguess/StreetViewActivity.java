@@ -44,7 +44,8 @@ public class StreetViewActivity extends RoboActivity {
 		mProgressBar.incrementProgress(true);
 
 		addFragment();
-		// addFragment2();
+		addFragment(); // if this gets called twice a bug ensues!
+
 		// initStreetView(mStreetViewFragment, mRound);
 		// initStreetView(mStreetViewFragment2, mRound);
 	}
@@ -64,14 +65,6 @@ public class StreetViewActivity extends RoboActivity {
 		U.log(this, "try toronto");
 		StreetViewPanoramaOptions options = new StreetViewPanoramaOptions();
 		options.position(new LatLng(Location.TORONTO_LAT, Location.TORONTO_LONG));
-		StreetViewPanoramaFragment fragment = StreetViewPanoramaFragment.newInstance(options);
-		getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
-	}
-
-	public void addFragment2() {
-		U.log(this, "try cidney");
-		StreetViewPanoramaOptions options = new StreetViewPanoramaOptions();
-		options.position(new LatLng(Location.DEFAULT_LATITUDE, Location.DEFAULT_LONGITUDE));
 		StreetViewPanoramaFragment fragment = StreetViewPanoramaFragment.newInstance(options);
 		getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
 	}

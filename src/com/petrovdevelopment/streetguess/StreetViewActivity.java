@@ -8,11 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.gms.maps.StreetViewPanorama;
-import com.google.android.gms.maps.StreetViewPanorama.OnStreetViewPanoramaChangeListener;
 import com.google.android.gms.maps.StreetViewPanoramaFragment;
 import com.google.android.gms.maps.StreetViewPanoramaOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.StreetViewPanoramaLocation;
 import com.petrovdevelopment.streetguess.model.Location;
 import com.petrovdevelopment.streetguess.model.Round;
 import com.petrovdevelopment.streetguess.util.U;
@@ -27,6 +25,7 @@ public class StreetViewActivity extends RoboActivity {
 	// StreetViewPanoramaFragment mStreetViewFragment2;
 
 	@InjectView(R.id.container) ViewGroup mContainer;
+	private StreetViewPanoramaFragment mFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,7 @@ public class StreetViewActivity extends RoboActivity {
 		mProgressBar.incrementProgress(true);
 
 		addFragment();
-		addFragment(); // if this gets called twice a bug ensues!
+		// addFragment(); // if this gets called twice a bug ensues!
 
 		// initStreetView(mStreetViewFragment, mRound);
 		// initStreetView(mStreetViewFragment2, mRound);
@@ -65,8 +64,19 @@ public class StreetViewActivity extends RoboActivity {
 		U.log(this, "try toronto");
 		StreetViewPanoramaOptions options = new StreetViewPanoramaOptions();
 		options.position(new LatLng(Location.TORONTO_LAT, Location.TORONTO_LONG));
-		StreetViewPanoramaFragment fragment = StreetViewPanoramaFragment.newInstance(options);
-		getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+
+		mFragment = StreetViewPanoramaFragment.newInstance(options);
+		getFragmentManager().beginTransaction().add(R.id.container, mFragment).commit();
+
+		StreetViewPanorama panorama = mFragment.getStreetViewPanorama();
+		panorama.setPosition(new LatLng(Location.DEFAULT_LATITUDE, Location.DEFAULT_LONGITUDE));
+
+		// fragment.getStreetViewPanorama();
+
+		// StreetViewPanoramaView view = new StreetViewPanoramaView(this, options);
+		// ViewGroup container = (ViewGroup) findViewById(R.id.container);
+		// container.addView(view);
+
 	}
 
 	// public void initStreetView(StreetViewPanoramaFragment streetViewPanoramaFragment, Round round) {

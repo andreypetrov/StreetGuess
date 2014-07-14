@@ -104,5 +104,4 @@ public class StreetViewActivity extends RoboActivity {
 	// U.log(this, "panorama is null");
 	// }
 	// }
-
 }

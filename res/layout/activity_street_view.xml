@@ -3,35 +3,23 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow_light"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:background="@color/yellow_light" >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="2000dp"
+            android:background="@color/teal"
             android:orientation="vertical" >
+        </FrameLayout>
+        
 
-            <fragment
-                android:id="@+id/streetView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                class="com.google.android.gms.maps.StreetViewPanoramaFragment" />
-        </LinearLayout>
-    </ScrollView>
     <!--
-    <ImageView
-        android:id="@+id/image"
+         <fragment
+        android:id="@+id/streetView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="@string/street_view_image"
-        android:scaleType="centerCrop"
-        android:src="@color/teal" />
+        class="com.google.android.gms.maps.StreetViewPanoramaFragment" />
     -->
 
     <Button

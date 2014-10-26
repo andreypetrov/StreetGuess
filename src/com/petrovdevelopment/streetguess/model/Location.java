@@ -1,5 +1,7 @@
 package com.petrovdevelopment.streetguess.model;
 
+import java.util.Random;
+
 import android.content.Context;
 
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -9,6 +11,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.petrovdevelopment.streetguess.R;
 import com.petrovdevelopment.streetguess.util.MathUtil;
+import com.petrovdevelopment.streetguess.util.U;
 
 /**
  * A model representing a location, with immutable properties.
@@ -31,6 +34,9 @@ public class Location {
 	public static final Double DEFAULT_LATITUDE = -33.867d;
 	public static final Double DEFAULT_LONGITUDE = 151.206d;
 
+	public static final Double TORONTO_LAT = 43.652728;
+	public static final Double TORONTO_LONG = -79.375303;
+
 	public final Double latitude;
 	public final Double longitude;
 	public final String name;
@@ -41,12 +47,14 @@ public class Location {
 	public Location() {
 		imageUrl = "http://1.bp.blogspot.com/-C9sdBW15K8s/T9IfvrVJ_pI/AAAAAAAACcs/xs44YbBF1eI/s1600/ao1.png";
 		name = "test dummy name";
+		latitude = DEFAULT_LATITUDE;
+		longitude = DEFAULT_LONGITUDE;
 		description = "";
-
-		latLng = MathUtil.generateRandomLatLng();
-		latitude = latLng.latitude;
-		longitude = latLng.longitude;
-
+		// latitude = MathUtil.generateRandomFloatInRange(-48, 10);
+		// longitude = MathUtil.generateRandomFloatInRange(-180, 180);
+		latLng = new LatLng(latitude, longitude);
+		U.log(this, "latitude: " + latitude);
+		U.log(this, "longitude: " + longitude);
 		int[] counts = new int[10];// from 0 to 9
 
 		// todo check if there is a panorama for those coordinates, if not then do something else

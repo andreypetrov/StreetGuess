@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.maps.StreetViewPanorama;
 import com.google.android.gms.maps.StreetViewPanoramaFragment;
 import com.google.android.gms.maps.StreetViewPanoramaOptions;
-import com.google.android.gms.maps.StreetViewPanoramaView;
+import com.google.android.gms.maps.model.LatLng;
+import com.petrovdevelopment.streetguess.model.Location;
 import com.petrovdevelopment.streetguess.model.Round;
-import com.petrovdevelopment.streetguess.util.MathUtil;
 import com.petrovdevelopment.streetguess.util.U;
 import com.petrovdevelopment.streetguess.views.GameProgressBar;
 
@@ -19,81 +20,88 @@ public class StreetViewActivity extends RoboActivity {
 	public static final int ANIMATION_TIME_IN_MILLIS = 3000;
 	private Round mRound;
 
-	@InjectView(R.id.progress)
-	GameProgressBar mProgressBar;
-	StreetViewPanoramaFragment mStreetViewFragment;
-	@InjectView(R.id.container)
-	ViewGroup container;
+	@InjectView(R.id.progress) GameProgressBar mProgressBar;
+	// StreetViewPanoramaFragment mStreetViewFragment;
+	// StreetViewPanoramaFragment mStreetViewFragment2;
 
-	// @InjectView(R.id.image) ImageView mImageView;
+	@InjectView(R.id.container) ViewGroup mContainer;
+	private StreetViewPanoramaFragment mFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		mRound = createRound(); // TODO replace this with getting the round from the game model
+		mRound = createRound();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_street_view);
-		mStreetViewFragment = (StreetViewPanoramaFragment) getFragmentManager().findFragmentById(R.id.streetView);
+		// mStreetViewFragment = (StreetViewPanoramaFragment) getFragmentManager().findFragmentById(R.id.streetView1);
+		// mStreetViewFragment2 = (StreetViewPanoramaFragment) getFragmentManager().findFragmentById(R.id.streetView2);
+
 		updateUi(mRound);
 
 	}
 
 	private void updateUi(Round mRound2) {
 		mProgressBar.incrementProgress(true);
-		initStreetView(mRound);
-		// Picasso.with(this).setDebugging(true);
-		// Picasso.with(this).load("http://i.imgur.com/DvpvklR.png").into(mImageView);
+
+		addFragment();
+		// addFragment(); // if this gets called twice a bug ensues!
+
+		// initStreetView(mStreetViewFragment, mRound);
+		// initStreetView(mStreetViewFragment2, mRound);
 	}
 
 	public Round createRound() {
-		return new Round();
+		return new Round();// TODO replace this with getting the round from the game model
 	}
 
 	public void onMakeGuessClick(View v) {
 		Intent intent = new Intent(this, GuessActivity.class);
 		intent.putExtra(Round.ROUND_EXTRA, mRound.getJson());
 		startActivity(intent);
+
 	}
 
-	public void initStreetView(Round round) {
+	public void addFragment() {
+		U.log(this, "try toronto");
+		StreetViewPanoramaOptions options = new StreetViewPanoramaOptions();
+		options.position(new LatLng(Location.TORONTO_LAT, Location.TORONTO_LONG));
 
-		for (int i = 0; i < 10; i++) {
-			U.log(this, "init street view");
-			StreetViewPanoramaView streetViewPanoramaView = new StreetViewPanoramaView(this, new StreetViewPanoramaOptions().position(MathUtil
-					.generateRandomLatLng()));
-			container.addView(streetViewPanoramaView);
-			
-//			
-//			final StreetViewPanorama panorama = mStreetViewFragment.getStreetViewPanorama();
-//			U.log(this, panorama);
-//			if (panorama != null) {
-//				OnStreetViewPanoramaChangeListener listener = new OnStreetViewPanoramaChangeListener() {
-//
-//					@Override
-//					public void onStreetViewPanoramaChange(StreetViewPanoramaLocation location) {
-//						if (location != null) {
-//							// do nothing
-//							U.log(this, location.panoId);
-//						} else {
-//							U.log(this, "location is null");
-//							initStreetView(new Round());
-//						}
-//					}
-//				};
-//
-//				panorama.setPosition(round.correctLocation.latLng);
-//				panorama.getLocation();
-//				panorama.setOnStreetViewPanoramaChangeListener(listener);
-//				panorama.setOnStreetViewPanoramaCameraChangeListener(new OnStreetViewPanoramaCameraChangeListener() {
-//
-//					@Override
-//					public void onStreetViewPanoramaCameraChange(StreetViewPanoramaCamera camera) {
-//						U.log(this, "camera has changed");
-//					}
-//				});
-//			} else {
-//				U.log(this, "panorama is null");
-//			}
-		}
+		mFragment = StreetViewPanoramaFragment.newInstance(options);
+		getFragmentManager().beginTransaction().add(R.id.container, mFragment).commit();
+
+		StreetViewPanorama panorama = mFragment.getStreetViewPanorama();
+		panorama.setPosition(new LatLng(Location.DEFAULT_LATITUDE, Location.DEFAULT_LONGITUDE));
+
+		// fragment.getStreetViewPanorama();
+
+		// StreetViewPanoramaView view = new StreetViewPanoramaView(this, options);
+		// ViewGroup container = (ViewGroup) findViewById(R.id.container);
+		// container.addView(view);
+
 	}
 
+	// public void initStreetView(StreetViewPanoramaFragment streetViewPanoramaFragment, Round round) {
+	// U.log(this, "init street view");
+	// final StreetViewPanorama panorama = streetViewPanoramaFragment.getStreetViewPanorama();
+	// if (panorama != null) {
+	// OnStreetViewPanoramaChangeListener listener = new OnStreetViewPanoramaChangeListener() {
+	//
+	// @Override
+	// public void onStreetViewPanoramaChange(StreetViewPanoramaLocation location) {
+	// if (location != null) {
+	// // do nothing
+	// U.log(this, location.panoId);
+	// } else {
+	// U.log(this, "location is null");
+	// }
+	// }
+	// };
+	// panorama.setOnStreetViewPanoramaChangeListener(listener);
+	// panorama.setPosition(round.correctLocation.latLng, 5000);
+	// panorama.getLocation();
+	// U.log(this, panorama.getLocation());
+	//
+	// } else {
+	// U.log(this, "panorama is null");
+	// }
+	// }
 }

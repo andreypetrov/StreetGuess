@@ -7,11 +7,23 @@
     android:gravity="center"
     android:orientation="vertical" >
 
-    <fragment
-        android:id="@+id/streetView"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.StreetViewPanoramaFragment" />
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <fragment
+                android:id="@+id/streetView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                class="com.google.android.gms.maps.StreetViewPanoramaFragment" />
+        </LinearLayout>
+    </ScrollView>
     <!--
     <ImageView
         android:id="@+id/image"

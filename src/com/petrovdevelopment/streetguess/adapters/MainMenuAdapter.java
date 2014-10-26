@@ -26,7 +26,7 @@ public class MainMenuAdapter extends GenericAdapter<String> {
 	}
 
 	@Override
-	public Object getHolder(View view) {
+	public Object createHolder(View view) {
 		return null;
 	}
 

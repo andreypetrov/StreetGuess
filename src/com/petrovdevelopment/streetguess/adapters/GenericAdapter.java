@@ -36,7 +36,7 @@ public abstract class GenericAdapter<Data> extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(context).inflate(getCellResourceId(), parent, false);
-			convertView.setTag(getHolder(convertView));
+			convertView.setTag(createHolder(convertView));
 		}
 		update(convertView, position);
 		return convertView;
@@ -47,11 +47,12 @@ public abstract class GenericAdapter<Data> extends BaseAdapter {
 	public abstract int getCellResourceId();
 
 	/**
-	 * To be used only in views with more than ten cells, to improve performance The object returned by getHolder can be used within the update method with view.getTag()
+	 * To be used only in views with more than ten cells, to improve performance. 
+	 * The object returned by getHolder can be used within the update method with view.getTag()
 	 * 
 	 * @param view
 	 * @return
 	 */
-	public abstract Object getHolder(View view);
+	public abstract Object createHolder(View view);
 
 }

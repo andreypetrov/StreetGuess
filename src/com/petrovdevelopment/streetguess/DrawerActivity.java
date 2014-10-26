@@ -1,14 +1,10 @@
 package com.petrovdevelopment.streetguess;
 
 import roboguice.activity.RoboActivity;
-import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.View;
 import android.widget.FrameLayout;
-
-import com.petrovdevelopment.streetguess.util.U;
 
 public class DrawerActivity extends RoboActivity implements DrawerListener {
 	protected DrawerLayout mDrawerLayout;

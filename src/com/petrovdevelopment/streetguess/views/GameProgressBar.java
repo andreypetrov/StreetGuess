@@ -1,7 +1,5 @@
 package com.petrovdevelopment.streetguess.views;
 
-import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorSet;
 import android.animation.AnimatorSet.Builder;
 import android.animation.ValueAnimator;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.petrovdevelopment.streetguess.R;
-import com.petrovdevelopment.streetguess.util.U;
 import com.petrovdevelopment.streetguess.util.ViewAttrsUtil;
 
 public class GameProgressBar extends LinearLayout {
@@ -48,7 +45,7 @@ public class GameProgressBar extends LinearLayout {
 		stepWidth = viewAttrsUtil.getDimensionPixelSizeFromXml(R.styleable.GameProgressBar_step_width, DEFAULT_STEP_GAP_IN_PIXELS);
 		stepHeight = viewAttrsUtil.getDimensionPixelSizeFromXml(R.styleable.GameProgressBar_step_height, DEFAULT_STEP_GAP_IN_PIXELS);
 
-		U.log(this, "step gap: " + stepGap);
+		//U.log(this, "step gap: " + stepGap);
 		setProgress(progressValue);
 		init();
 	}
@@ -97,7 +94,7 @@ public class GameProgressBar extends LinearLayout {
 	 * @param progress
 	 */
 	private void setProgress(int progress) {
-		U.log(this, "progress: " + progress);
+		//U.log(this, "progress: " + progress);
 		if (progress >= getMax()) throw new IllegalStateException("Cannot set a progress above or equal to the bar size, which is " + max);
 		if (progress < 0) throw new IllegalStateException("Cannot set a progress below 0");
 		if (progress > getValue()) {
